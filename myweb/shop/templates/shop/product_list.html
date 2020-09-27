@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>상품목록</h2>
+<input type="button" value="상품등록"
+onclick="location.href='/shop/product_write'">
+<input type="button" value="장바구니"
+       onclick="location.href='/shop/cart_list'">
+<table border="1" width="500px">
+    <tr>
+        <th>상품ID</th>
+        <th>&nbsp;</th>
+        <th>상품명</th>
+        <th>가격</th>
+    </tr>
+    {% for row in productList %}
+    <tr>
+        <td>{{row.product_id}}</td>
+        <td>
+            {% if row.picture_url != '-' %}
+            {% load static %}
+            {% static '' as baseUrl %}
+                <img src="{{baseUrl}}images/{{row.picture_url}}"
+                     width="200px" height="100px">
+            {% endif %}
+        </td>
+        <td>
+            <a href="product_detail?product_id={{row.product_id}}">{{row.product_name}}</a><br>
+            <a href="product_edit?product_id={{row.product_id}}">[편집]</a>
+        </td>
+        <td>{{row.price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

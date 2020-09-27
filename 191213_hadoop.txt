@@ -1,0 +1,39 @@
+mapper.py
+
+
+sys.stdin /=> 분석할 파일
+stdin -> standard input 표준입력장치
+
+#!/usr/bin/python3    # 이 파일을 python3로 실행
+import sys
+for line in sys.stdin:   # 입력된 파일
+    line=line.strip()   # 좌우 공백 제거
+    keys=line.split()   # 단어 단위로 구분
+    for key in keys:   #
+        value=1         #
+        print("{0}\t{1}".format(key,value))
+
+
+
+reducer.py
+
+
+#!/usr/bin/python3
+import sys
+last_key=None
+running_total=0
+for input_line in sys.stdin:
+    input_line=input_line.stip()
+    this_key,value=input_line.split("\t",1)
+    value=int(value)
+
+    if last_key == this_key:
+        running_total += value
+    else:
+        if last_key:
+            print("{}\t{}".format(last_key,running_total))
+        running_total=value
+        last_key=this_key
+
+if last_key == this_key:
+    print("{}\t{}".format(last_key,running_total))

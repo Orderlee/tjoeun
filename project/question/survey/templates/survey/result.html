@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>과학기술에 대한 관심과 의식에 대한 설문조사</title>
+</head>
+<body>
+<h2>설문조사 결과</h2>
+<table border="1">
+    <tr align="center">
+        <th>문항</th>
+        <th>응답수</th>
+        <th>응답비율</th>
+    </tr>
+    {% for row,ans in surveyList %}
+    <tr>
+        <td>{{ans}}</td>
+        <td>{{row.sum_num}}</td>
+        <td>{{row.rate}}%</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">메인</a>
+</body>
+</html>
